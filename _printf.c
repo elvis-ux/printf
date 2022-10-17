@@ -9,11 +9,11 @@
 int _printf(const char *format, ...)
 {
 	unsigned int i = 0, length = 0, ibuf = 0;
-	va_list arg;
+	va_list argument;
 	int (*function)(va_list, char *, unsigned int);
 	char *size;
 
-	va_start(arg, format), size = malloc(sizeof(char) * 1024);
+	va_start(argument, format), size = malloc(sizeof(char) * 1024);
 	if (!format || !size || (format[i] == '%' && !format[i + 1]))
 		return (-1);
 	if (!format[i])
@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '\0')
 			{
-				print_buff(size, ibuf), free(size), va_end(arg);
+				print_buff(size, ibuf), free(size), va_end(argument);
 				return (-1);
 			}
 			else
@@ -43,9 +43,9 @@ int _printf(const char *format, ...)
 			} i++;
 		} else
 			handle_buf(size, format[i], ibuf), length++;
-		for (ibuf = len; ibuf > 1024; ibuf -= 1024)
+		for (ibuf = length; ibuf > 1024; ibuf -= 1024)
 			;
 	}
-	print_buff(size, ibuf), free(size), va_end(arg);
+	print_buff(size, ibuf), free(size), va_end(argument);
 	return (length);
 }
