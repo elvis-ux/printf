@@ -17,7 +17,7 @@ typedef struct print
 	int (*func)(va_list, char *,  unsigned int);
 } print_t;
 
-int _printf(const char *, format, ...);
+int _printf(const char *format, ...);
 int print_prg(va_list __attribute__((unused)), char *, unsigned int);
 int print_func(const char *s, int index);
 unsigned int handle_buf(char *buf, char c, unsigned int ibuf);
