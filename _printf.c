@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if ([i + 1] == '\0')
+			if (format[i + 1] == '\0')
 			{
 				print_buff(size, ibuf), free(size), va_end(arg);
 				return (-1);
@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 				{
 					if (format[i + 1] == ' ' && !format[i + 2])
 						return (-1);
-					handle_buf(butter, format[i], ibuf), length++, i--;
+					handle_buf(size, format[i], ibuf), length++, i--;
 				} else
 				{
 					length += function(arg, size, ibuf);
