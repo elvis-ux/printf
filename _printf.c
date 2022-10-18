@@ -9,12 +9,12 @@
 int _printf(const char *format, ...)
 {
 	unsigned int i = 0, length = 0, ibuf = 0;
-	va_list argument;
+	va_list arguments;
 	int (*function)(va_list, char *, unsigned int);
-	char *size;
+	char *buffer;
 
 	va_start(argument, format), size = malloc(sizeof(char) * 1024);
-	if (!format || !size || (format[i] == '%' && !format[i + 1]))
+	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
 		return (-1);
 	if (!format[i])
 		return (0);
@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '\0')
 			{
-				print_buff(size, ibuf), free(size), va_end(argument);
+				print_buff(buffer, ibuf), free(buffer), va_end(argument);
 				return (-1);
 			}
 			else
@@ -34,18 +34,18 @@ int _printf(const char *format, ...)
 				{
 					if (format[i + 1] == ' ' && !format[i + 2])
 						return (-1);
-					handle_buf(size, format[i], ibuf), length++, i--;
+					handle_buf(buffer, format[i], ibuf), length++, i--;
 				} else
 				{
-					length += function(arg, size, ibuf);
+					length += function(argumemts, buffer, ibuf);
 					i += print_func(format, i + 1);
 				}
 			} i++;
 		} else
-			handle_buf(size, format[i], ibuf), length++;
+			handle_buf(buffer, format[i], ibuf), length++;
 		for (ibuf = length; ibuf > 1024; ibuf -= 1024)
 			;
 	}
-	print_buff(size, ibuf), free(size), va_end(argument);
+	print_buff(buffer, ibuf), free(buffer), va_end(arguments);
 	return (length);
 }
