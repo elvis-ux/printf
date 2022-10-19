@@ -9,13 +9,12 @@
 int _printf(const char * const format, ...)
 {
 	print_t m[] = {
-		{"%s", print_string}, {"%c", print_char},
-		{"%%" print_37}, {"%i", print_int},
-		{"%d", print_dec}, {"%r", print_srev},
-		{"%R", print_rot13}, {"%b", print_bin},
-		{"%u", print_unsined}, {"%o", print_oct},
-		{"%x", print_hex}, {"%X" print_HEX},
-		{"%S", print_string}, {"%p", print_pointer}
+		{"%s", printf_string}, {"%c", printf_char},
+		{"%%", printf_37},
+		{"%i", printf_int}, {"%d", printf_dec}, {"%r", printf_srev},
+		{"%R", printf_rot13}, {"%b", printf_bin}, {"%u", printf_unsigned},
+		{"%o", printf_oct}, {"%x", printf_hex}, {"%X", printf_HEX},
+		{"%S", printf_exclusive_string}, {"%p", printf_pointer}
 	};
 
 	va_list args;
@@ -24,6 +23,7 @@ int _printf(const char * const format, ...)
 	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
+
 Here:
 	while (format[i] != '\0')
 	{
