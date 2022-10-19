@@ -4,24 +4,22 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
+
 
 /**
- * struct print - printer functions
- * @type_arg: identifier
- * @f: function pointer
+ * struct format - matches conversion specifiers
+ * @id: type char pointer (i,d,u, etc)
+ * @f: function pointer for conversion specifiers
  */
 
-typedef struct print
+typedef struct format
 {
-	char *type_arg;
-	int (*f)(va_list, char *, unsigned int);
+	char *id;
+	int (*f)();
 } print_t;
-
 int _printf(const char *format, ...);
-int print_int(va_list arguments, char *buf, unsigned int ibuf);
-int (*get_print_func(const char *s, int index))(va_list, char *, unsigned int);
-int print_func(const char *s, int index);
-unsigned int handle_buff(char *buf, char c, unsigned int ibuf);
-int print_buff(char *buf, unsigned int nbuf);
-
+int print_int(va_list, args);
+int _putchar(char c);
 #endif
