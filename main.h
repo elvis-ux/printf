@@ -19,6 +19,7 @@ typedef struct format
 	char *id;
 	int (*f)();
 } print_t;
+
 int _printf(const char *format, ...);
 int print_int(va_list, args);
 int _putchar(char c);
